@@ -19,7 +19,9 @@ export class BreedDetailComponent {
     if(!accordionItem.expanded){
       this.httpService.getBreedImage(id).subscribe((res: any)=>{
         this.imageSource = res.message;
-      });;
+      });
+      console.log("send event")
+      this.httpService.sendClickEvent(id).subscribe();
     }
    
     accordionItem.toggle();

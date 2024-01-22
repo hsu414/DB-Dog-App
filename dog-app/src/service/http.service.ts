@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { retry, catchError } from 'rxjs/operators';
-import { throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +9,7 @@ export class HttpService {
   headers = new HttpHeaders().set('Content-Type', 'application/json');
   constructor(private http: HttpClient) { }
   
-  breedsListURL ="/breeds/list";
+  breedsListURL ="/api/breeds/list";
 
   getBreedsList(){
     return this.http.get(this.breedsListURL);
@@ -22,7 +20,11 @@ export class HttpService {
   }
 
   getBreedImage(breed: string){
-    return this.http.get(`breeds/${breed}/image`);
+    return this.http.get(`/api/breeds/${breed}/image`);
+  }
+
+  sendClickEvent(breed: string){
+    return this.http.post(`/api/analytics/breeds/${breed}`,{event: "viewMore", id:breed},{headers: this.headers});
   }
 
 

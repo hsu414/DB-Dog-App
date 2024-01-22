@@ -1,8 +1,10 @@
 import express, { Request, Response } from 'express';
+import fs from 'fs';
 
 const server = express();
 const port = 3800;
 let masterBreeds: any;
+const analytics: any ={};
 
 
 
@@ -11,7 +13,7 @@ server.get('/', (req: Request, res: Response) => {
   });
 
 
-server.get('/breeds/list/all', async (req: Request, res: Response) => {
+server.get('/api/breeds/list/all', async (req: Request, res: Response) => {
     
     const {offset, size} =req.query;
     
@@ -20,7 +22,7 @@ server.get('/breeds/list/all', async (req: Request, res: Response) => {
   });
 
   //return only master breeds
-server.get('/breeds/list', async (req: Request, res: Response) => {
+server.get('/api/breeds/list', async (req: Request, res: Response) => {
    
     const offset = parseInt(req.query.offset as string);
     const size = parseInt(req.query.size as string);
@@ -59,20 +61,31 @@ server.get('/breeds/list', async (req: Request, res: Response) => {
   });
 
   
-server.get('/breeds/:id/image', async (req: Request, res: Response) => {
+server.get('/api/breeds/:id/image', async (req: Request, res: Response) => {
   const response = await fetch(`https://dog.ceo/api/breed/${req.params.id}/images/random`);
   return res.status(response.status).send(await response.json());
 });
 
+server.post('/api/analytics/breeds/:id', (req: Request, res: Response) => {
+  const id = req.params.id;
+  if(!analytics[id]){
+    analytics[id] = 1;
+  }else{
+    analytics[id] ++;
+  }
+  fs.writeFileSync("./analytics.json", JSON.stringify(analytics));
+  return res.status(200).send(`clicks on  ${id}: ${analytics[id]}`);
+});
 
-server.get('/breeds/detail/:id', async (req: Request, res: Response) => {
+
+server.get('/api/breeds/detail/:id', async (req: Request, res: Response) => {
+  // it doesn't return any info... 
     const response = await fetch(`https://dog.ceo/api/breed/${req.params.id}`);
     return res.status(response.status).send(await response.json());
   });
 
 
 
-// start the server
 server.listen(port, () => {
     console.log(`Server running at http://localhost:${port}`);
   });
