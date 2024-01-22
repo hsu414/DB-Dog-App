@@ -2,26 +2,36 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.1.0.
 
-## Development server
+# BFF
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+The BFF is runnning on node.js. To run the bff server, open the terminal and run:  
+` cd bff`  
+` npm install`   
+` npm run start`
 
-## Code scaffolding
+Node server is running at port 3800
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- /api/breeds/list ,which returns list of master breed and supports pagination with query params: offset and size
+- /api/breeds/:id/image, which returns a random image of the breed
+- /api/analytics, which retuns the count of clicks on different breeds
 
-## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+# Dog App
 
-## Running unit tests
+The frontend dog app is an angular project. To run the dog app, open another terminal and run:  
+` cd dog-app`  
+` npm install -g @angular/cli`   
+` npm install`   
+` npm run start`
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Check out the app on your browser http://localhost:4200/
 
-## Running end-to-end tests
+Note: Since I don't find a reliable endpoint to fetch the breed details from the Dog API, the app fetches and display breed image instead of breed details. 
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
 
-## Further help
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+
+
+
+

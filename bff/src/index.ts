@@ -66,6 +66,9 @@ server.get('/api/breeds/:id/image', async (req: Request, res: Response) => {
   return res.status(response.status).send(await response.json());
 });
 
+// Analytics
+const storagePath = "./analytics.json";
+
 server.post('/api/analytics/breeds/:id', (req: Request, res: Response) => {
   const id = req.params.id;
   if(!analytics[id]){
@@ -73,8 +76,14 @@ server.post('/api/analytics/breeds/:id', (req: Request, res: Response) => {
   }else{
     analytics[id] ++;
   }
-  fs.writeFileSync("./analytics.json", JSON.stringify(analytics));
+  fs.writeFileSync(storagePath, JSON.stringify(analytics));
   return res.status(200).send(`clicks on  ${id}: ${analytics[id]}`);
+});
+
+server.get('/api/analytics/', (req: Request, res: Response) => {
+  fs.readFile(storagePath, 'utf8', (err, data) => {
+  return res.status(200).send(data);
+  })
 });
 
 
