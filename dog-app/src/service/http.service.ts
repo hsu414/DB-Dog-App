@@ -17,6 +17,10 @@ export class HttpService {
     return this.http.get(this.breedsListURL);
   }
 
+  getBreedsListByPage(pageNumber: number, pageSize: number){
+    return this.http.get(`${this.breedsListURL}?offset=${pageNumber*pageSize}&size=${pageSize}`);
+  }
+
   getBreedImage(breed: string){
     return this.http.get(`breeds/${breed}/image`);
   }

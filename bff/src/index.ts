@@ -47,7 +47,7 @@ server.get('/breeds/list', async (req: Request, res: Response) => {
        
     } 
     if(results){
-        return res.status(200).json({method: req.method, results});  }
+        return res.status(200).json({method: req.method, total: masterBreeds.length, results});  }
     else{
         res.status(404).json({
             method: req.method,
