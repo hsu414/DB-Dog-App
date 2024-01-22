@@ -11,14 +11,14 @@ The BFF is runnning on node.js. To run the bff server, open the terminal and run
 
 Node server is running at port 3800
 
-- /api/breeds/list ,which returns list of master breed and supports pagination with query params: offset and size
+- /api/breeds/list ,which returns a list of breeds and supports pagination with query params: offset and size
 - /api/breeds/:id/image, which returns a random image of the breed
 - /api/analytics, which retuns the count of clicks on different breeds
 
 
 # Dog App
 
-The frontend dog app is an angular project. To run the dog app, open another terminal and run:  
+The frontend dog app is an angular project, which displays a list of dog breeds and their images. To run the dog app, open another terminal and run:  
 ` cd dog-app`  
 ` npm install -g @angular/cli`   
 ` npm install`   
@@ -26,7 +26,7 @@ The frontend dog app is an angular project. To run the dog app, open another ter
 
 Check out the app on your browser http://localhost:4200/
 
-Note: Since I don't find a reliable endpoint to fetch the breed details from the Dog API, the app fetches and display breed image instead of breed details. 
+Note: Since I don't find a reliable endpoint to fetch the breed details from the Dog API, the app fetches and displays breed images instead of breed details. 
 
 
 
