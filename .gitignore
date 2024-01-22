@@ -1,0 +1,7 @@
+# dependencies  
+**/node_modules
+**/dist
+**/coverage
+**/.nyc_output
+**/e2e
+package-lock.json
